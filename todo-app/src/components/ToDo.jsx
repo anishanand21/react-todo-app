@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faCircleCheck,
   faPen,
   faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons"
 
 const ToDo = ({ toDo, markDone, setUpdateData, deleteTask }) => {
   return (
@@ -33,11 +33,7 @@ const ToDo = ({ toDo, markDone, setUpdateData, deleteTask }) => {
                       <span
                         title="Edit"
                         onClick={() =>
-                          setUpdateData({
-                            id: task.id,
-                            title: task.title,
-                            status: task.status ? true : false,
-                          })
+                          setUpdateData(task)
                         }
                       >
                         <FontAwesomeIcon icon={faPen} />
@@ -50,10 +46,10 @@ const ToDo = ({ toDo, markDone, setUpdateData, deleteTask }) => {
                   </div>
                 </div>
               </React.Fragment>
-            );
+            )
           })}
     </>
-  );
-};
+  )
+}
 
-export default ToDo;
+export default ToDo

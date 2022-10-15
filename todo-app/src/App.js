@@ -11,6 +11,7 @@ import "./App.css";
 function App() {
   // Tasks (todo list) State
   const [toDo, setToDo] = useState([]);
+  const [completedList, setCompletedList] = useState([]);
 
   //Temp State
   const [newTask, setNewTask] = useState("");
@@ -20,8 +21,10 @@ function App() {
   const addTask = () => {
     if (newTask) {
       let num = toDo.length + 1;
-      let newEntry = { id: num, title: newTask, status: false };
-      setToDo([...toDo, newEntry]);
+      setToDo([
+        ...toDo, 
+        { id: num, title: newTask, status: false }
+      ]);
       setNewTask("");
     }
   };
@@ -49,22 +52,21 @@ function App() {
   };
 
   // Change task for update
-  const changeTask = (e) => {
-    let newEntry = {
-      id: updateData.id,
+  const changeHolder = (e) => {
+    setUpdateData({
+      ...updateData,
       title: e.target.value,
-      status: updateData.status ? true : false,
-    };
-    setUpdateData(newEntry);
+    });
   };
 
   // update task
   const updateTask = () => {
-    let filterRecords = [...toDo].filter((task) => task.id !== updateData.id);
-    let updatedObject = [...filterRecords, updateData];
-    setToDo(updatedObject);
+    let removeOldRecord = [...toDo].filter((task) => task.id !== updateData.id);
+    setToDo([...removeOldRecord, updateData]);
+
     setUpdateData("");
   };
+
 
   return (
     <div className="container App">
@@ -75,11 +77,11 @@ function App() {
       <br />
 
       {updateData && updateData ? (
-        <UpdateForm 
-        updateData={updateData}
-        changeTask={changeTask}
-        updateTask={updateTask}
-        cancelUpdate={cancelUpdate}
+        <UpdateForm
+          updateData={updateData}
+          changeHolder={changeHolder}
+          updateTask={updateTask}
+          cancelUpdate={cancelUpdate}
         />
       ) : (
         <AddTaskForm
@@ -93,13 +95,13 @@ function App() {
 
       {toDo && toDo.length ? "" : "No Tasks!"}
 
-      <ToDo 
-      toDo={toDo}
-      markDone={markDone}
-      setUpdateData={setUpdateData}
-      deleteTask={deleteTask}
+      <ToDo
+        toDo={toDo}
+        markDone={markDone}
+        setUpdateData={setUpdateData}
+        deleteTask={deleteTask}
       />
-
+      
     </div>
   );
 }

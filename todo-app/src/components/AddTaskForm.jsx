@@ -17,7 +17,7 @@ const AddTaskForm = ({ newTask, setNewTask, addTask }) => {
       </div>
       <br />
     </>
-  );
-};
+  )
+}
 
-export default AddTaskForm;
+export default AddTaskForm

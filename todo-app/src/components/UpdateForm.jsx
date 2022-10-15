@@ -1,11 +1,11 @@
-const UpdateForm = ({ updateData, changeTask, updateTask, cancelUpdate }) => {
+const UpdateForm = ({ updateData, changeHolder, updateTask, cancelUpdate }) => {
   return (
     <>
       <div className="row">
         <div className="col">
           <input
             value={updateData && updateData.title}
-            onChange={(e) => changeTask(e)}
+            onChange={(e) => changeHolder(e)}
             className="form-control form-control-lg"
           />
         </div>
@@ -20,7 +20,7 @@ const UpdateForm = ({ updateData, changeTask, updateTask, cancelUpdate }) => {
       </div>
       <br />
     </>
-  );
-};
+  )
+}
 
-export default UpdateForm;
+export default UpdateForm
